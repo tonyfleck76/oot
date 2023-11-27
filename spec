@@ -3377,6 +3377,12 @@ beginseg
 endseg
 
 beginseg
+    name "ovl_Pols_Voice"
+    include "build/src/overlays/actors/ovl_Pols_Voice/pols_voice.o"
+    include "build/src/overlays/actors/ovl_Pols_Voice/ovl_Pols_Voice_reloc.o"
+endseg
+
+beginseg
     name "gameplay_keep"
     romalign 0x1000
     include "build/assets/objects/gameplay_keep/gameplay_keep.o"
@@ -6046,6 +6052,13 @@ beginseg
     name "object_zl4"
     romalign 0x1000
     include "build/assets/objects/object_zl4/object_zl4.o"
+    number 6
+endseg
+
+beginseg
+    name "object_pols_voice"
+    romalign 0x1000
+    include "build/assets/objects/object_pols_voice/object_pols_voice.o"
     number 6
 endseg
 
@@ -10476,4 +10489,32 @@ beginseg
     name "softsprite_matrix_static"
     romalign 0x1000
     include "build/baserom/softsprite_matrix_static.o"
+endseg
+
+beginseg
+    name "my_dungeon"
+    romalign 0x1000
+    include "build/assets/scenes/tutorial_scenes/my_dungeon/my_dungeon_scene.o"
+    number 2
+endseg
+
+beginseg
+    name "my_dungeon_room_0"
+    romalign 0x1000
+    include "build/assets/scenes/tutorial_scenes/my_dungeon/my_dungeon_room_0.o"
+    number 3
+endseg
+
+beginseg
+    name "my_dungeon_room_1"
+    romalign 0x1000
+    include "build/assets/scenes/tutorial_scenes/my_dungeon/my_dungeon_room_1.o"
+    number 3
+endseg
+
+beginseg
+    name "my_dungeon_room_2"
+    romalign 0x1000
+    include "build/assets/scenes/tutorial_scenes/my_dungeon/my_dungeon_room_2.o"
+    number 3
 endseg

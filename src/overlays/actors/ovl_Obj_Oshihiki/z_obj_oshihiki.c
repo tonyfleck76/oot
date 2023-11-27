@@ -56,6 +56,7 @@ static s16 sSceneIds[] = {
     SCENE_DEKU_TREE,     SCENE_DODONGOS_CAVERN, SCENE_FOREST_TEMPLE,
     SCENE_FIRE_TEMPLE,   SCENE_WATER_TEMPLE,    SCENE_SPIRIT_TEMPLE,
     SCENE_SHADOW_TEMPLE, SCENE_GANONS_TOWER,    SCENE_GERUDO_TRAINING_GROUND,
+    SCENE_MY_DUNGEON
 };
 
 static InitChainEntry sInitChain[] = {
@@ -658,6 +659,7 @@ void ObjOshihiki_Draw(Actor* thisx, PlayState* play) {
         case SCENE_SPIRIT_TEMPLE:
         case SCENE_SHADOW_TEMPLE:
         case SCENE_GERUDO_TRAINING_GROUND:
+        case SCENE_MY_DUNGEON:
             gDPSetEnvColor(POLY_OPA_DISP++, this->color.r, this->color.g, this->color.b, 255);
             break;
         default:
