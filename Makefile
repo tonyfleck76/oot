@@ -243,8 +243,11 @@ build/src/%.o: CC := $(CC) -fexec-charset=euc-jp
 endif
 
 #### Main Targets ###
+all:
+	python3 install_mod_assets.py
+	make -j$(nproc) build
 
-all: $(ROM)
+build: $(ROM)
 ifeq ($(COMPARE),1)
 	@md5sum $(ROM)
 	@md5sum -c checksum.md5
