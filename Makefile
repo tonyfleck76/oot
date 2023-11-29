@@ -95,8 +95,8 @@ AS         := $(MIPS_BINUTILS_PREFIX)as
 LD         := $(MIPS_BINUTILS_PREFIX)ld
 OBJCOPY    := $(MIPS_BINUTILS_PREFIX)objcopy
 OBJDUMP    := $(MIPS_BINUTILS_PREFIX)objdump
-EMULATOR   ?= 
-EMU_FLAGS  ?= 
+EMULATOR   ?= '/mnt/c/Program Files (x86)/Steam/steam.exe'
+EMU_FLAGS  ?= -applaunch 1118310 -L "E:\Games\steamapps\common\RetroArch\cores\mupen64plus_next_libretro.dll"
 
 INC := -Iinclude -Iinclude/libc -Isrc -Ibuild -I.
 
@@ -273,11 +273,12 @@ setup:
 	python3 extract_baserom.py
 	python3 extract_assets.py -j$(N_THREADS)
 
-run: $(ROM)
+run:
+	make 
 ifeq ($(EMULATOR),)
 	$(error Emulator path not set. Set EMULATOR in the Makefile or define it as an environment variable)
 endif
-	$(EMULATOR) $(EMU_FLAGS) $<
+	$(EMULATOR) $(EMU_FLAGS) "D:\Games\ROMS\n64\zelda_ocarina_mq_dbg.z64"
 
 
 .PHONY: all clean setup run distclean assetclean
