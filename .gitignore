@@ -39,13 +39,13 @@ tools/*dSYM/
 graphs/
 
 # Assets
-*.png
-*.jpg
-*.mdli
-*.anmi
-*.obj
-*.mtl
-*.fbx
+assets/**/*.png
+assets/**/*.jpg
+assets/**/*.mdli
+assets/**/*.anmi
+assets/**/*.obj
+assets/**/*.mtl
+assets/**/*.fbx
 !*_custom*
 .extracted-assets.json
 
