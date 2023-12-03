@@ -22,6 +22,7 @@
 #include "overlays/effects/ovl_Effect_Ss_Fhg_Flash/z_eff_ss_fhg_flash.h"
 #include "assets/objects/gameplay_keep/gameplay_keep.h"
 #include "assets/objects/object_link_child/object_link_child.h"
+#include "assets/objects/mod_gameplay_keep/mod_gameplay_keep.h"
 
 // Some player animations are played at this reduced speed, for reasons yet unclear.
 // This is called "adjusted" for now.
@@ -352,6 +353,8 @@ void Player_Action_80850AEC(Player* this, PlayState* play);
 void Player_Action_80850C68(Player* this, PlayState* play);
 void Player_Action_80850E84(Player* this, PlayState* play);
 void Player_Action_CsAction(Player* this, PlayState* play);
+
+void Player_TryFeatherJump(Player* this, PlayState* play);
 
 // .bss part 1
 static s32 D_80858AA0;
@@ -3237,6 +3240,8 @@ void Player_UseItem(PlayState* play, Player* this, s32 item) {
                 // Prevent some items from being used if player is out of ammo.
                 // Also prevent explosives from being used if there are 3 or more active (outside of bombchu bowling)
                 Sfx_PlaySfxCentered(NA_SE_SY_ERROR);
+            } else if (itemAction == PLAYER_IA_NAYRUS_LOVE) {
+                Player_TryFeatherJump(this, play);
             } else if (itemAction == PLAYER_IA_LENS_OF_TRUTH) {
                 // Handle Lens of Truth
                 if (Magic_RequestChange(play, 0, MAGIC_CONSUME_LENS)) {
@@ -5804,8 +5809,21 @@ s32 func_8083BC7C(Player* this, PlayState* play) {
     return 0;
 }
 
+// arg2 is a backflip or sidehop state. (arg2 & 1) = backflip, and not 1 is sidehop
+// arg2 = 1: sidehop left
+// arg2 = 2: backflip
+// arg2 = 3: sidehop right
 void func_8083BCD0(Player* this, PlayState* play, s32 arg2) {
-    func_80838940(this, D_80853D4C[arg2][0], !(arg2 & 1) ? 5.8f : 3.5f, play, NA_SE_VO_LI_SWORD_N);
+    if (arg2 == 4) {
+        s32 camMode = play->mainCamera.mode;
+        if (camMode == CAM_MODE_Z_AIM || camMode == CAM_MODE_AIM_ADULT || camMode == CAM_MODE_AIM_CHILD) {
+            func_80838940(this, D_80853D4C[2][0], !(arg2 & 1) ? 5.8f : 3.5f, play, NA_SE_VO_LI_SWORD_N);
+        } else {
+            func_80838940(this, &gPlayerAnim_FrontFlipStart, 5.8f, play, NA_SE_VO_LI_SWORD_N);
+        }
+    } else {
+        func_80838940(this, D_80853D4C[arg2][0], !(arg2 & 1) ? 5.8f : 3.5f, play, NA_SE_VO_LI_SWORD_N);
+    }
 
     if (arg2) {}
 
@@ -5817,7 +5835,11 @@ void func_8083BCD0(Player* this, PlayState* play, s32 arg2) {
 
     this->stateFlags2 |= PLAYER_STATE2_19;
 
-    Player_PlaySfx(this, ((arg2 << 0xE) == 0x8000) ? NA_SE_PL_ROLL : NA_SE_PL_SKIP);
+    if (arg2 == 4) {
+        Player_PlaySfx(this, NA_SE_PL_ROLL);
+    } else {
+        Player_PlaySfx(this, ((arg2 << 0xE) == 0x8000) ? NA_SE_PL_ROLL : NA_SE_PL_SKIP);
+    }
 }
 
 s32 Player_ActionChange_10(Player* this, PlayState* play) {
@@ -10925,6 +10947,10 @@ void Player_UpdateCommon(Player* this, PlayState* play, Input* input) {
         }
     }
 
+    if (this->actor.bgCheckFlags & BGCHECKFLAG_GROUND) {
+        this->featherJumpCount = 0;
+    }
+
     Math_Vec3f_Copy(&this->actor.prevPos, &this->actor.home.pos);
 
     if (this->unk_A73 != 0) {
@@ -15312,4 +15338,19 @@ void func_80853148(PlayState* play, Actor* actor) {
         this->naviActor->flags |= ACTOR_FLAG_TALK;
         func_80835EA4(play, 0xB);
     }
+}
+
+void Player_TryFeatherJump(Player* this, PlayState* play) {
+    if (this->featherJumpCount >= 3) {
+        return;
+    }
+
+    this -> featherJumpCount++;
+
+    this->stateFlags1 &= ~PLAYER_STATE1_20;
+    this->stateFlags2 &= ~PLAYER_STATE2_19;
+    func_8083BCD0(this, play, 4);
+    this->actor.velocity.y += 1.7f;
+    Actor_PlaySfx(&this->actor, NA_SE_EN_DEKU_WAKEUP);
+    EffectSsGRipple_Spawn(play, &this->actor.world.pos, 10, 800, 0);
 }
