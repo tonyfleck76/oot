@@ -527,6 +527,7 @@ beginseg
     include "build/data/audio_tables.rodata.o"
     include "build/data/rsp.text.o"
     include "build/data/rsp.rodata.o"
+    include "build/src/code/debug_util.o"
 endseg
 
 beginseg
@@ -6071,7 +6072,7 @@ beginseg
 endseg
 
 beginseg
-    name "object_gi_feather"
+name "object_gi_feather"
     romalign 0x1000
     include "build/assets/objects/object_gi_feather/object_gi_feather.o"
     number 6

@@ -46,7 +46,6 @@ void TreeElevator_Init(Actor* thisx, PlayState* play) {
     this->dyna.bgId = DynaPoly_SetBgActor(play, &play->colCtx.dyna, &this->dyna.actor, colHeader);
 
     TreeElevator_SetupWaitForSwitch(this, play);
-
 }
 
 void TreeElevator_Destroy(Actor* thisx, PlayState* play) {
