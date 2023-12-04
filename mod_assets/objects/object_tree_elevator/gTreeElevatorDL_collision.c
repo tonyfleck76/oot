@@ -3,7 +3,7 @@
 #include "macros.h"
 
 SurfaceType gTreeElevatorDL_polygonTypes[] = {
-	{ 0x00000000, 0x00000000 },
+	{ 0x00000000, 0x0000000a },
 };
 
 CollisionPoly gTreeElevatorDL_polygons[] = {
