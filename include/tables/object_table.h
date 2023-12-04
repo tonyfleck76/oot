@@ -411,3 +411,4 @@
 /* 0x0191 */ DEFINE_OBJECT(object_zl4, OBJECT_ZL4)
 /* 0x0192 */ DEFINE_OBJECT(object_pols_voice, OBJECT_POLS_VOICE)
 /* 0x0193 */ DEFINE_OBJECT(object_gi_feather, OBJECT_GI_FEATHER)
+/* 0x0194 */ DEFINE_OBJECT(object_tree_elevator, OBJECT_TREE_ELEVATOR)

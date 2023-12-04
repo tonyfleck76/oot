@@ -6078,6 +6078,14 @@ beginseg
 endseg
 
 beginseg
+    name "object_tree_elevator"
+    romalign 0x1000
+    include "build/assets/objects/object_tree_elevator/gTreeElevatorDL.o"
+    include "build/assets/objects/object_tree_elevator/gTreeElevatorDL_collision.o"
+    number 6
+endseg
+
+beginseg
     name "g_pn_01"
     romalign 0x1000
     include "build/assets/textures/place_title_cards/g_pn_01.o"
