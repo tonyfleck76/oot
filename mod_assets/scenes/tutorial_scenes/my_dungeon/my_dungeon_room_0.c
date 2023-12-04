@@ -11,7 +11,7 @@
  * Header Child Day (Default)
 */
 #define LENGTH_MY_DUNGEON_ROOM_0_HEADER00_OBJECTLIST 3
-#define LENGTH_MY_DUNGEON_ROOM_0_HEADER00_ACTORLIST 2
+#define LENGTH_MY_DUNGEON_ROOM_0_HEADER00_ACTORLIST 3
 SceneCmd my_dungeon_room_0_header00[] = {
     SCENE_CMD_ECHO_SETTINGS(0x00),
     SCENE_CMD_ROOM_BEHAVIOR(0x00, 0x00, false, false),
@@ -30,12 +30,12 @@ s16 my_dungeon_room_0_header00_objectList[LENGTH_MY_DUNGEON_ROOM_0_HEADER00_OBJE
 };
 
 ActorEntry my_dungeon_room_0_header00_actorList[LENGTH_MY_DUNGEON_ROOM_0_HEADER00_ACTORLIST] = {
-    // Treasure Chest
+    // Dungeon Switches
     {
-        /* Actor ID   */ ACTOR_EN_BOX,
-        /* Position   */ { 102, -117, -547 },
+        /* Actor ID   */ ACTOR_OBJ_SWITCH,
+        /* Position   */ { 237, -112, -18 },
         /* Rotation   */ { DEG_TO_BINANG(0.000), DEG_TO_BINANG(0.000), DEG_TO_BINANG(0.000) },
-        /* Parameters */ 0x0BC3
+        /* Parameters */ 0x0803
     },
 
     // Custom Actor
@@ -43,7 +43,15 @@ ActorEntry my_dungeon_room_0_header00_actorList[LENGTH_MY_DUNGEON_ROOM_0_HEADER0
         /* Actor ID   */ ACTOR_TREE_ELEVATOR,
         /* Position   */ { -100, -112, -70 },
         /* Rotation   */ { DEG_TO_BINANG(0.000), DEG_TO_BINANG(0.000), DEG_TO_BINANG(0.000) },
-        /* Parameters */ 0x0000
+        /* Parameters */ 0x0008
+    },
+
+    // Treasure Chest
+    {
+        /* Actor ID   */ ACTOR_EN_BOX,
+        /* Position   */ { 102, -117, -547 },
+        /* Rotation   */ { DEG_TO_BINANG(0.000), DEG_TO_BINANG(0.000), DEG_TO_BINANG(0.000) },
+        /* Parameters */ 0x0BC3
     },
 };
 
