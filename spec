@@ -3384,6 +3384,12 @@ beginseg
 endseg
 
 beginseg
+    name "ovl_Tree_Elevator"
+    include "build/src/overlays/actors/ovl_Tree_Elevator/z_tree_elevator.o"
+    include "build/src/overlays/actors/ovl_Tree_Elevator/ovl_Tree_Elevator_reloc.o"
+endseg
+
+beginseg
     name "gameplay_keep"
     romalign 0x1000
     include "build/assets/objects/gameplay_keep/gameplay_keep.o"

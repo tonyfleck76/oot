@@ -28,6 +28,14 @@ s16 my_dungeon_room_2_header00_objectList[LENGTH_MY_DUNGEON_ROOM_2_HEADER00_OBJE
 };
 
 ActorEntry my_dungeon_room_2_header00_actorList[LENGTH_MY_DUNGEON_ROOM_2_HEADER00_ACTORLIST] = {
+    // Flame Circle
+    {
+        /* Actor ID   */ ACTOR_BG_HIDAN_CURTAIN,
+        /* Position   */ { -27, -120, 576 },
+        /* Rotation   */ { DEG_TO_BINANG(0.000), DEG_TO_BINANG(0.000), DEG_TO_BINANG(0.000) },
+        /* Parameters */ 0x1082
+    },
+
     // Dungeon Switches
     {
         /* Actor ID   */ ACTOR_OBJ_SWITCH,
@@ -50,14 +58,6 @@ ActorEntry my_dungeon_room_2_header00_actorList[LENGTH_MY_DUNGEON_ROOM_2_HEADER0
         /* Position   */ { -27, -120, 576 },
         /* Rotation   */ { DEG_TO_BINANG(0.000), DEG_TO_BINANG(0.000), DEG_TO_BINANG(0.000) },
         /* Parameters */ 0x27E2
-    },
-
-    // Flame Circle
-    {
-        /* Actor ID   */ ACTOR_BG_HIDAN_CURTAIN,
-        /* Position   */ { -27, -120, 576 },
-        /* Rotation   */ { DEG_TO_BINANG(0.000), DEG_TO_BINANG(0.000), DEG_TO_BINANG(0.000) },
-        /* Parameters */ 0x1082
     },
 };
 
