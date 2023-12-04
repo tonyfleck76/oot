@@ -5,7 +5,7 @@
 #include "global.h"
 
 typedef struct TreeElevator {
-    Actor actor;
+    DynaPolyActor dyna;
 } TreeElevator;
 
 #endif
