@@ -1,3 +1,5 @@
+include .env
+
 MAKEFLAGS += --no-builtin-rules
 
 # Ensure the build fails if a piped command fails
@@ -252,7 +254,9 @@ ifeq ($(COMPARE),1)
 	@md5sum $(ROM)
 	@md5sum -c checksum.md5
 endif
-	cp $(ROM) /mnt/d/Games/ROMS/n64
+ifdef ROM_PATH
+	cp $(ROM) $(ROM_PATH)
+endif
 
 clean:
 	$(RM) -r $(ROM) $(ELF) build
@@ -278,7 +282,7 @@ run:
 ifeq ($(EMULATOR),)
 	$(error Emulator path not set. Set EMULATOR in the Makefile or define it as an environment variable)
 endif
-	$(EMULATOR) $(EMU_FLAGS) "D:\Games\ROMS\n64\zelda_ocarina_mq_dbg.z64"
+	$(EMULATOR) $(EMU_FLAGS) $(ROM_PATH)$(ROM)
 
 
 .PHONY: all clean setup run distclean assetclean
