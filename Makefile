@@ -254,8 +254,8 @@ ifeq ($(COMPARE),1)
 	@md5sum $(ROM)
 	@md5sum -c checksum.md5
 endif
-ifdef ROM_PATH
-	cp $(ROM) $(ROM_PATH)
+ifdef ROM_COPY_PATH
+	cp $(ROM) $(ROM_COPY_PATH)
 endif
 
 clean:
@@ -282,7 +282,7 @@ run:
 ifeq ($(EMULATOR),)
 	$(error Emulator path not set. Set EMULATOR in the Makefile or define it as an environment variable)
 endif
-	$(EMULATOR) $(EMU_FLAGS) $(ROM_PATH)$(ROM)
+	$(EMULATOR) $(EMU_FLAGS) "$(ROM_PATH)$(ROM)"
 
 
 .PHONY: all clean setup run distclean assetclean

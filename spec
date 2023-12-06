@@ -3391,6 +3391,12 @@ beginseg
 endseg
 
 beginseg
+    name "ovl_Npc_Test"
+    include "build/src/overlays/actors/ovl_Npc_Test/z_npc_test.o"
+    include "build/src/overlays/actors/ovl_Npc_Test/ovl_Npc_Test_reloc.o"
+endseg
+
+beginseg
     name "gameplay_keep"
     romalign 0x1000
     include "build/assets/objects/gameplay_keep/gameplay_keep.o"
